@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Document= require('./Document');
 
 const DB= process.env.DATABASE_URL.replace('<PASSWORD>',process.env.DATABASE_PASSWORD);
-
+const PORT= process.env.PORT || 3001;
 
 mongoose.connect(DB,{
    useNewUrlParser: true,
@@ -11,7 +11,7 @@ mongoose.connect(DB,{
 }).then(connection => console.log('DATABASE CONNECTED'));
 
 
-const io= require('socket.io')(3001, {
+const io= require('socket.io')(PORT, {
     cors: {
         origin: 'http://localhost:3000',
         methods: ["GET","POST"],
